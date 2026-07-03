@@ -45,6 +45,7 @@ import {addArtifactToResult} from '../artifact-utils.js';
 import {BaseCompiler} from '../base-compiler.js';
 import {CompilationEnvironment} from '../compilation-env.js';
 import {AmdgpuAsmParser} from '../parsers/asm-parser-amdgpu.js';
+import {E2KAsmParser} from '../parsers/asm-parser-e2k.js';
 import {HexagonAsmParser} from '../parsers/asm-parser-hexagon.js';
 import {PTXAsmParser} from '../parsers/asm-parser-ptx.js';
 import {StackUsageInfo} from '../stack-usage-transformer.js';
@@ -386,6 +387,18 @@ export class ClangIntelCompiler extends ClangCompiler {
             ...executeParameters.env,
         };
         return super.runExecutable(executable, executeParameters, homeDir);
+    }
+}
+
+export class ClangE2KCompiler extends ClangCompiler {
+    static override get key() {
+        return 'clang-e2k';
+    }
+
+    constructor(info: PreliminaryCompilerInfo, env: CompilationEnvironment) {
+        super(info, env);
+
+        this.asm = new E2KAsmParser();
     }
 }
 

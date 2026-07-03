@@ -41,6 +41,7 @@ export {
     ClangCompiler,
     ClangCudaCompiler,
     ClangDxcCompiler,
+    ClangE2KCompiler,
     ClangHexagonCompiler,
     ClangHipCompiler,
     ClangIntelCompiler,
